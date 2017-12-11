@@ -6,6 +6,8 @@
 from flask import Flask, render_template, request
 import sqlite3
 
+print("Starting application...")
+
 # anything that is in this file (__name__) run it in Flask
 api = Flask(__name__)
 
