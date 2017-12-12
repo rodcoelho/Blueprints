@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <!-- COMMENT - Head - where meta-data is posted -->
+        <meta charset="utf=8">
+        <link href ='view_style.css'>
+        <script src="view_behavior.js"> </script>
+
+    </head>
+
+
+    <body>
+
+    Welcome Home
+
+    <form action = "/authenticate" method = "post">
+        <input name = "username" placeholder="Username">
+        <input name = "password" placeholder="Password" type="password">
+        <input type="submit">
+
+    </form>
+
+    <h3> <span style= "color:red;" >{{message}} </span> </h3>
+
+    </body>
+</html>
