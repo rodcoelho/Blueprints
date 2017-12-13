@@ -53,28 +53,27 @@ def store_data_informations_table(user_id,first, last, dob):
     connection = sqlite3.connect('customer.db')
     cursor = connection.cursor()
 
-    try:
-        # check if information table already holds info. If so UPDATE. Else ADD.
+    # check if information table already holds info. If so UPDATE. Else ADD.
+    cursor.execute("""
+                SELECT userID, first, last
+                FROM informations
+                WHERE userID = '{}';
+                            """.format(user_id))
+    query = cursor.fetchall()
+
+    # if query doesn't exist in table then ADD to table
+    if len(query) == 0:
+        # if query of element doesn't exist, ADD to table
         cursor.execute("""
-                    SELECT userID, first, last
-                    FROM informations
-                    WHERE userID = ?;
-                                """,(user_id))
-        query = cursor.fetchall()
-
-        # if query doesn't exist in table then ADD to table
-        if len(query) == 0:
-            # if query of element doesn't exist, ADD to table
-            cursor.execute("""
-                INSERT INTO informations(userID, first, last, dob)
-                VALUES (?,?,?,?);
-                    """,(user_id, first, last, dob))
-            connection.commit()
-            cursor.close()
-            connection.close()
-        else:
-            # ELSE if informations for userID  exists in table - adjust to reflect changes from controller
-
+            INSERT INTO informations(userID, first, last, dob)
+            VALUES (?,?,?,?);
+                """,(user_id, first, last, dob))
+        connection.commit()
+        cursor.close()
+        connection.close()
+    else:
+        # ELSE if informations for userID  exists in table - adjust to reflect changes from controller
+        try:
             # update FIRST
             cursor.execute("""
                 UPDATE informations
@@ -108,12 +107,12 @@ def store_data_informations_table(user_id,first, last, dob):
             connection.commit()
             cursor.close()
             connection.close()
-    except:
-        print("Error occured")
+        except:
+            print("Error occured")
 
-        connection.commit()
-        cursor.close()
-        connection.close()
+            connection.commit()
+            cursor.close()
+            connection.close()
 
 def store_phonenum_table(user_id,phonenumber):
     connection = sqlite3.connect('customer.db')

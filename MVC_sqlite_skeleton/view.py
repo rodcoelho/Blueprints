@@ -62,7 +62,7 @@ def get_personal_info():
     )
     user_dob_input = input(
         """\n 
-        When is your birthday? Format: YYYY-MM-DD
+        When is your birthday? Format: YYYYMMDD
         \n"""
     )
     if len(user_name_input) < 3 or len(user_last_input) < 3 or len(user_dob_input) < 3:
