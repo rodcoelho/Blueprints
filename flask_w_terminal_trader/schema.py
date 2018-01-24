@@ -6,6 +6,15 @@ connection = sqlite3.connect('master.db', check_same_thread=False)
 cursor = connection.cursor()
 
 cursor.execute("""
+CREATE TABLE users(
+pk INTEGER,
+username VARCHAR(32),
+password VARCHART(64),
+balance INTEGER,
+PRIMARY KEY(pk))
+;""")
+
+cursor.execute("""
 CREATE TABLE positions(
 pk INTEGER,
 userID INTEGER,
@@ -28,6 +37,6 @@ buysell VARCHAR(32),
 FOREIGN KEY(userID) REFERENCES users(pk),
 PRIMARY KEY(pk))
 ;""")
-
+connection.commit()
 cursor.close()
 connection.close()
