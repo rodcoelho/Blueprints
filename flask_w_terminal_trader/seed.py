@@ -21,5 +21,4 @@ VALUES ('{}','{}',1000000);
     """.format('root', 'swordfish'))
 
 connection.commit()
-cursor.close()
-connection.close()
+

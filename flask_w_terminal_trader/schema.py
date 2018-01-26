@@ -38,5 +38,4 @@ FOREIGN KEY(userID) REFERENCES users(pk),
 PRIMARY KEY(pk))
 ;""")
 connection.commit()
-cursor.close()
-connection.close()
+
